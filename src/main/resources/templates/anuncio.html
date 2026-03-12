@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Bienes Raíces - Detalle</title>
+  <link rel="stylesheet" th:href="@{/css/main.css}">
+
+</head>
+<body>
+
+<main class="contenedor seccion contenido-centrado">
+  <h1 th:text="${propiedad.titulo}">Casa en Venta frente al bosque</h1>
+
+  <img loading="lazy" th:src="@{'/img/uploads/' + ${propiedad.imagen}}" alt="imagen de la propiedad">
+
+  <div class="resumen-propiedad">
+    <p class="precio" th:text="${'$' + propiedad.precio}">$3,000,000</p>
+
+    <ul class="iconos-caracteristicas">
+      <li>
+        <img class="icono" loading="lazy" th:src="@{/img/icono_wc.svg}" alt="icono wc">
+        <p th:text="${propiedad.wc}">3</p>
+      </li>
+      <li>
+        <img class="icono" loading="lazy" th:src="@{/img/icono_estacionamiento.svg}" alt="icono estacionamiento">
+        <p th:text="${propiedad.estacionamiento}">3</p>
+      </li>
+      <li>
+        <img class="icono" loading="lazy" th:src="@{/img/icono_dormitorio.svg}" alt="icono habitaciones">
+        <p th:text="${propiedad.habitaciones}">4</p>
+      </li>
+    </ul>
+
+    <div class="texto-descripcion">
+      <p th:text="${propiedad.descripcion}">Aquí va la descripción completa...</p>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>

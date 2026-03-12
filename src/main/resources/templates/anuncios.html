@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienes Raíces - Anuncios</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+
+<header class="header">
+    <div class="contenedor contenido-header">
+        <div class="barra">
+            <a th:href="@{/}">
+                <img th:src="@{/img/logo.svg}" alt="Logotipo de Bienes Raices">
+            </a>
+
+            <div class="mobile-menu">
+                <img th:src="@{/img/barras.svg}" alt="icono menu responsive">
+            </div>
+
+            <div class="derecha">
+                <img class="dark-mode-boton" th:src="@{/img/dark-mode.svg}">
+                <nav class="navegacion">
+                    <a th:href="@{/nosotros}">Nosotros</a>
+                    <a th:href="@{/anuncios}">Anuncios</a>
+                    <a th:href="@{/blog}">Blog</a>
+                    <a th:href="@{/contacto}">Contacto</a>
+
+                    <a th:href="@{/admin/dashboard}" sec:authorize="isAuthenticated()">Admin</a>
+
+                    <form th:action="@{/logout}" method="POST" sec:authorize="isAuthenticated()" style="display: inline;">
+                        <button type="submit" class="boton-cerrar-sesion" style="background:none; border:none; color:white; cursor:pointer;">
+                            Cerrar Sesión
+                        </button>
+                    </form>
+                </nav>
+            </div>
+        </div> </div>
+</header>
+
+<main class="contenedor seccion">
+    <h2>Casas y Depas en Venta</h2>
+
+    <div class="contenedor-anuncios">
+        <div class="anuncio" th:each="propiedad : ${propiedades}">
+            <img th:src="@{'/img/uploads/' + ${propiedad.imagen}}" alt="Imagen de la propiedad">
+            <div class="contenido-anuncio">
+                <h3 th:text="${propiedad.titulo}">Título de la Propiedad</h3>
+                <p th:text="${propiedad.descripcion}">Descripción corta...</p>
+
+                <p class="precio" th:text="${'$' + #numbers.formatDecimal(propiedad.precio, 0, 'COMMA', 0, 'POINT')}"></p>
+
+                <ul class="iconos-caracteristicas">
+                    <li>
+                        <img class="icono" loading="lazy" th:src="@{/img/icono_wc.svg}" alt="icono wc">
+                        <p th:text="${propiedad.wc}">3</p>
+                    </li>
+                    <li>
+                        <img class="icono" loading="lazy" th:src="@{/img/icono_estacionamiento.svg}" alt="icono estacionamiento">
+                        <p th:text="${propiedad.estacionamiento}">2</p>
+                    </li>
+                    <li>
+                        <img class="icono" loading="lazy" th:src="@{/img/icono_dormitorio.svg}" alt="icono habitaciones">
+                        <p th:text="${propiedad.habitaciones}">2</p>
+                    </li>
+                </ul>
+
+                <a th:href="@{'/propiedad/' + ${propiedad.id}}" class="boton-amarillo-block">
+                    Ver Propiedad
+                </a>
+            </div></div></div>
+
+         </main>
+
+<footer class="footer seccion">
+    <div class="contenedor contenedor-footer">
+        <nav class="navegacion">
+            <a th:href="@{/nosotros}">Nosotros</a>
+            <a th:href="@{/anuncios}">Anuncios</a>
+            <a th:href="@{/blog}">Blog</a>
+            <a th:href="@{/contacto}">Contacto</a>
+
+            <a th:href="@{/admin/dashboard}" sec:authorize="isAuthenticated()">Admin</a>
+
+            <form th:action="@{/logout}" method="POST" sec:authorize="isAuthenticated()" style="display: inline;">
+                <button type="submit" class="boton-cerrar-sesion" style="background:none; border:none; color:white; cursor:pointer; font-size: inherit; font-family: inherit;">
+                    Cerrar Sesión
+                </button>
+            </form>
+        </nav>
+    </div>
+    <p class="copyright">Todos los derechos Reservados <span th:text="${#dates.year(#dates.createNow())}">2026</span> &copy;</p>
+</footer>
+
+<script th:src="@{/js/app.js}"></script>
+</body>
+</html>

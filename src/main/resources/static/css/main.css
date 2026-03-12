@@ -1,0 +1,1508 @@
+/* ============================================
+   VARIABLES Y RESET
+============================================ */
+:root {
+    /* Colores principales */
+    --primario: #e8505b;
+    --secundario: #455a64;
+    --negro: #000000;
+    --blanco: #ffffff;
+    --grisClaro: #eceeef;
+    --gris: #6c757d;
+    --grisOscuro: #343a40;
+    --verde: #28a745;
+    --amarillo: #ffc107;
+    --amarilloOscuro: #E08709;
+    --azul: #3498db;
+
+    /* Espaciados */
+    --separacion: 5rem;
+    --separacion-chica: 2rem;
+
+    /* Fuentes */
+    --fuentePrincipal: 'Raleway', 'Lato', sans-serif;
+    --fuenteSecundaria: 'Roboto', sans-serif;
+
+    /* Pesos de fuente */
+    --delgada: 300;
+    --regular: 400;
+    --bold: 700;
+    --black: 900;
+
+    /* Breakpoints */
+    --telefono: 480px;
+    --tablet: 768px;
+    --desktop: 1024px;
+}
+
+.contenido-nosotros .imagen img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Esto asegura que la imagen mantenga su proporción */
+    min-height: 300px; /* Le damos un respiro para que no colapse */
+    border-radius: 1rem;
+}
+
+.entrada-blog {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.entrada-blog .imagen {
+    flex: 0 0 40%; /* Le da un ancho base del 40% */
+}
+
+.entrada-blog img {
+    width: 100%;
+    height: 25rem; /* Altura fija para que no colapse */
+    object-fit: cover;
+    display: block;
+}
+
+
+/* Estilos para la alerta de éxito */
+.alerta {
+    padding: 1rem;
+    margin: 2rem 0;
+    border-radius: 0.5rem;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.imagen-tabla {
+    width: 100px;
+    height: auto;
+    display: block;
+}
+
+.propiedades td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.alerta.error {
+    border-left: 5px solid #b91c1c;
+}
+
+
+
+.exito {
+    background-color: #71b100; /* Un verde similar al de tu diseño */
+    color: white;
+    border: 1px solid #5a8d00;
+}
+
+.boton-cerrar-sesion {
+    font-size: 1.8rem;
+    color: #FFF;
+    text-decoration: none;
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .boton-cerrar-sesion {
+        margin-left: 2rem;
+    }
+}
+
+.navegacion form {
+    display: inline;
+}
+
+.boton-cerrar-sesion:hover {
+    color: #71b100; /* O el color que uses para los hovers de tus enlaces */
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%; /* 1rem = 10px */
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: var(--fuentePrincipal);
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: var(--negro);
+    background-color: var(--blanco);
+}
+
+/* ============================================
+   CONTENEDORES Y UTILIDADES
+============================================ */
+.contenedor {
+    width: 95%;
+    max-width: 120rem; /* 1200px */
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.seccion {
+    margin-top: calc(var(--separacion) / 2);
+    margin-bottom: calc(var(--separacion) / 2);
+    padding: calc(var(--separacion) / 2) 0;
+}
+
+.centrar-texto {
+    text-align: center;
+}
+
+.alinear-derecha {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.contenido-centrado {
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.w-sm-100 {
+    width: 100%;
+}
+
+.margin-top {
+    margin-top: calc(var(--separacion) / 2);
+}
+
+.margin-bottom {
+    margin-bottom: calc(var(--separacion) / 2);
+}
+
+/* ============================================
+   TIPOGRAFÍA
+============================================ */
+h1, h2, h3, h4 {
+    font-family: var(--fuentePrincipal);
+    margin: calc(var(--separacion) / 2) 0;
+    font-weight: 300;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3.8rem;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 3.4rem;
+}
+
+h3 {
+    font-size: 3rem;
+}
+
+h4 {
+    font-size: 2.6rem;
+}
+
+p {
+    color: var(--negro);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ============================================
+   IMÁGENES Y MULTIMEDIA
+============================================ */
+img,
+picture {
+    width: 100%;
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* ============================================
+   HEADER Y NAVEGACIÓN
+============================================ */
+.header {
+    background-color: var(--grisOscuro);
+    padding: 1rem 0 3rem 0;
+}
+
+.header.inicio {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+                url('../img/header.jpg');
+    background-size: cover;
+    background-position: center center;
+    color: var(--blanco);
+    min-height: 60rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.no-webp .header.inicio {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+                     url('../img/header.jpg');
+}
+
+.webp .header.inicio {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+                     url('../img/header.webp');
+}
+
+.contenido-header {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.barra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+@media (max-width: 768px) {
+    .barra {
+        flex-direction: column;
+        gap: 2rem;
+    }
+}
+
+
+.logo {
+    height: 6rem;
+    width: auto;
+    transition: transform 0.3s;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.derecha {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .derecha {
+        flex-direction: column;
+    }
+}
+
+.dark-mode-boton {
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    filter: invert(100%);
+    transition: transform 0.3s;
+}
+
+.dark-mode-boton:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .dark-mode-boton {
+        margin-top: 0;
+    }
+}
+
+/* Navegación */
+.navegacion {
+    display: flex;
+    gap: 2rem;
+    visibility: visible;
+    opacity: 1;
+    height: auto;
+    transition: visibility .3s ease-in-out, opacity .5s linear, height .5s linear;
+}
+
+/* Corrección específica para los iconos en las tarjetas de anuncios */
+.anuncio .iconos-caracteristicas .icono {
+    width: 35px !important;
+    height: 35px !important;
+    background-color: transparent; /* Quita el fondo gris de la sección nosotros */
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    transform: none;
+}
+
+/* Asegura que la imagen dentro del li no se estire al 100% del contenedor */
+.iconos-caracteristicas li img {
+    width: 35px;
+    height: 35px;
+}
+
+
+
+
+@media (max-width: 768px) {
+    .navegacion {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .navegacion {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+}
+
+.navegacion a {
+    color: var(--blanco);
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: var(--bold);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.navegacion a:hover {
+    color: var(--verde);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navegacion .activo {
+    color: var(--amarillo);
+    border-bottom: 2px solid var(--amarillo);
+}
+
+/* Menú móvil */
+.mobile-menu {
+    display: none;
+    cursor: pointer;
+}
+
+.mobile-menu img {
+    width: 5rem;
+    height: 5rem;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu {
+        display: block;
+    }
+}
+
+.mostrar {
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+}
+
+/* ============================================
+   ICONOS NOSOTROS
+============================================ */
+.iconos-nosotros {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+    .iconos-nosotros {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.icono {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--grisClaro);
+    border-radius: 1rem;
+    transition: transform 0.3s;
+}
+
+.icono:hover {
+    transform: translateY(-5px);
+}
+
+.icono img {
+    height: 10rem;
+    width: auto;
+    margin: 0 auto 2rem auto;
+}
+
+.icono h3 {
+    text-transform: uppercase;
+    color: var(--primario);
+    margin-bottom: 1rem;
+}
+
+/* ============================================
+   ANUNCIOS
+============================================ */
+.contenedor-anuncios {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+@media (min-width: 768px) {
+    .contenedor-anuncios {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 992px) and (min-width: 769px) {
+    .contenedor-anuncios {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.anuncio {
+    background-color: var(--grisClaro);
+    border: 1px solid #dee2e6;
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.anuncio:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.anuncio picture,
+.anuncio img {
+    width: 100%;
+    height: 25rem;
+    object-fit: cover;
+    display: block;
+}
+
+.contenido-anuncio {
+    padding: 2rem;
+}
+
+.contenido-anuncio h3 {
+    color: var(--grisOscuro);
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.contenido-anuncio p {
+    font-size: 1.6rem;
+    color: var(--gris);
+    margin-bottom: 1.5rem;
+}
+
+.precio {
+    color: var(--verde);
+    font-size: 3rem;
+    font-weight: var(--bold);
+    margin: 1rem 0;
+}
+
+/* Busca esto y cámbialo */
+.icono-item {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--grisClaro);
+    border-radius: 1rem;
+    transition: transform 0.3s;
+}
+
+.icono-item img {
+    height: 10rem;
+    width: auto;
+    margin: 0 auto 2rem auto;
+}
+
+/* Iconos características */
+.iconos-caracteristicas {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    max-width: 40rem;
+    margin: 2rem 0;
+    justify-content: space-between;
+}
+
+.iconos-caracteristicas li {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.iconos-caracteristicas img {
+    flex: 0 0 3rem;
+    width: 3rem;
+    height: 3rem;
+    margin-right: 0;
+}
+
+.iconos-caracteristicas p {
+    font-weight: var(--black);
+    font-size: 1.6rem;
+    margin: 0;
+}
+
+/* ============================================
+   BOTONES
+============================================ */
+.boton {
+    display: inline-block;
+    padding: 1rem 3rem;
+    text-decoration: none;
+    font-weight: var(--bold);
+    text-align: center;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: calc(var(--separacion) / 2);
+}
+
+.boton:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.boton-amarillo {
+    background-color: var(--amarilloOscuro);
+    color: var(--blanco);
+}
+
+.boton-amarillo:hover {
+    background-color: #c57608;
+}
+
+.boton-amarillo-block {
+    display: block;
+    width: 100%;
+    background-color: var(--amarilloOscuro);
+    color: var(--blanco);
+    padding: 1.5rem;
+    font-size: 1.8rem;
+}
+
+.boton-verde {
+    background-color: var(--verde);
+    color: var(--blanco);
+}
+
+.boton-verde:hover {
+    background-color: #218838;
+}
+
+/* ============================================
+   SECCIÓN CONTACTO (IMAGEN-CONTACTO)
+============================================ */
+.imagen-contacto {
+    background-position: center center;
+    background-size: cover;
+    padding: calc(var(--separacion) * 2) 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--blanco);
+    text-align: center;
+    margin: 5rem 0;
+    height: 60rem; /* Altura específica para la sección */
+    position: relative; /* Necesario para el pseudo-elemento */
+    overflow: hidden; /* Evita desbordamientos */
+}
+
+/* Fondo oscuro sobre la imagen para mejor contraste */
+.imagen-contacto::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6); /* Ajusta la opacidad aquí */
+    z-index: 1; /* Se coloca detrás del contenido */
+}
+
+/* Las imágenes de fondo según formato */
+.no-webp .imagen-contacto {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                     url('../img/encuentra.jpg');
+}
+
+.webp .imagen-contacto {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                     url('../img/encuentra.webp');
+}
+
+/* Contenido sobre el fondo */
+.imagen-contacto h2 {
+    font-size: 4rem;
+    font-weight: var(--black);
+    color: var(--blanco);
+    margin-bottom: 2rem;
+    position: relative; /* Se coloca sobre el pseudo-elemento */
+    z-index: 2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Mejora legibilidad */
+}
+
+.imagen-contacto p {
+    font-size: 1.8rem;
+    color: var(--blanco);
+    max-width: 60rem;
+    margin-bottom: 3rem;
+    position: relative; /* Se coloca sobre el pseudo-elemento */
+    z-index: 2;
+    line-height: 1.6;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Mejora legibilidad */
+}
+
+.imagen-contacto .boton-amarillo {
+    position: relative; /* Se coloca sobre el pseudo-elemento */
+    z-index: 2;
+    margin-top: 2rem;
+    padding: 1.5rem 4rem;
+    font-size: 1.8rem;
+    font-weight: var(--bold);
+    border-radius: 0.5rem;
+    background-color: var(--amarilloOscuro);
+    color: var(--blanco);
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.imagen-contacto .boton-amarillo:hover {
+    background-color: #c57608;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive para la sección de contacto */
+@media (max-width: 768px) {
+    .imagen-contacto {
+        height: 50rem; /* Altura reducida en tablets */
+        padding: calc(var(--separacion) * 1.5) 0;
+    }
+
+    .imagen-contacto h2 {
+        font-size: 3rem;
+        padding: 0 2rem;
+    }
+
+    .imagen-contacto p {
+        font-size: 1.6rem;
+        padding: 0 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .imagen-contacto {
+        height: 40rem; /* Altura más reducida en móviles */
+        padding: calc(var(--separacion)) 0;
+    }
+
+    .imagen-contacto h2 {
+        font-size: 2.5rem;
+    }
+
+    .imagen-contacto p {
+        font-size: 1.4rem;
+    }
+
+    .imagen-contacto .boton-amarillo {
+        padding: 1.2rem 3rem;
+        font-size: 1.6rem;
+    }
+}
+
+
+
+/* ============================================
+   BLOG
+============================================ */
+.seccion-inferior {
+    margin-top: 5rem;
+}
+
+@media (min-width: 768px) {
+    .seccion-inferior {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        column-gap: 2rem;
+    }
+}
+
+.blog {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.entrada-blog {
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+    .entrada-blog {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        column-gap: 2rem;
+    }
+}
+
+.entrada-blog:last-of-type {
+    margin-bottom: 0;
+}
+
+.entrada-blog .imagen {
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.entrada-blog img {
+    width: 100%;
+    height: 20rem;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.entrada-blog:hover img {
+    transform: scale(1.1);
+}
+
+.texto-entrada a {
+    text-decoration: none;
+    color: inherit;
+    margin-top: 2rem;
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .texto-entrada a {
+        margin-top: 0;
+    }
+}
+
+.texto-entrada h4 {
+    margin: 0;
+    line-height: 1.4;
+    color: var(--primario);
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.texto-entrada h4::after {
+    content: '';
+    display: block;
+    width: 15rem;
+    height: 0.5rem;
+    background-color: var(--verde);
+    margin-top: 1rem;
+}
+
+.informacion-meta {
+    color: var(--gris);
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+}
+
+.informacion-meta span {
+    color: var(--amarilloOscuro);
+    font-weight: var(--bold);
+}
+
+/* ============================================
+   TESTIMONIALES
+============================================ */
+.testimoniales {
+    background-color: var(--verde);
+    font-size: 2.4rem;
+    padding: 2rem;
+    color: var(--blanco);
+    border-radius: 2rem;
+    margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+    .testimoniales {
+        margin-top: 0;
+    }
+}
+
+.testimonial {
+    padding: 2rem;
+}
+
+.testimonial blockquote {
+    padding-left: 5rem;
+    position: relative;
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.testimonial blockquote::before {
+    content: '';
+    background-image: url('../img/comilla.svg');
+    background-repeat: no-repeat;
+    width: 6rem;
+    height: 8rem;
+    display: block;
+    position: absolute;
+    left: -2rem;
+    top: -2rem;
+}
+
+.testimonial p {
+    text-align: right;
+    color: var(--blanco);
+    font-weight: var(--bold);
+    margin: 0;
+}
+
+/* ============================================
+   FORMULARIOS
+============================================ */
+.formulario {
+    margin: 3rem auto;
+    max-width: 60rem;
+    background-color: var(--grisClaro);
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.formulario fieldset {
+    border: none;
+    margin-bottom: 2rem;
+    padding: 0;
+}
+
+.formulario legend {
+    font-size: 2.4rem;
+    color: var(--grisOscuro);
+    font-weight: var(--bold);
+    margin-bottom: 2rem;
+    text-align: center;
+    display: block;
+    width: 100%;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--primario);
+}
+
+.formulario p {
+    font-size: 1.6rem;
+    color: var(--gris);
+    margin: 1.5rem 0 0.5rem 0;
+    line-height: 1.4;
+}
+
+.formulario label {
+    display: block;
+    font-size: 1.6rem;
+    color: var(--grisOscuro);
+    font-weight: var(--bold);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.formulario input:not([type="submit"]),
+.formulario textarea,
+.formulario select {
+    width: 100%;
+    padding: 1.2rem;
+    font-size: 1.6rem;
+    font-family: var(--fuentePrincipal);
+    border: 1px solid var(--gris);
+    border-radius: 0.5rem;
+    background-color: var(--blanco);
+    margin-bottom: 2rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.formulario input:focus,
+.formulario textarea:focus,
+.formulario select:focus {
+    outline: none;
+    border-color: var(--primario);
+    box-shadow: 0 0 0 3px rgba(232, 80, 91, 0.1);
+}
+
+.formulario input[type="submit"] {
+    background-color: var(--primario);
+    color: var(--blanco);
+    border: none;
+    padding: 1.5rem 3rem;
+    font-size: 1.8rem;
+    font-weight: var(--bold);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    display: block;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.formulario input[type="submit"]:hover {
+    background-color: #d43f49;
+    transform: translateY(-2px);
+}
+
+/* Checkboxes y radios */
+.formulario .opciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.formulario .opcion {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.formulario input[type="radio"],
+.formulario input[type="checkbox"] {
+    width: auto;
+    margin-right: 0.5rem;
+    transform: scale(1.2);
+}
+
+/* Validación */
+.formulario input:invalid,
+.formulario textarea:invalid {
+    border-color: #dc3545;
+}
+
+.formulario input:valid,
+.formulario textarea:valid {
+    border-color: var(--verde);
+}
+
+.mensaje-error {
+    color: #dc3545;
+    font-size: 1.4rem;
+    margin-top: -1.5rem;
+    margin-bottom: 1.5rem;
+    display: none;
+}
+
+.formulario input:invalid + .mensaje-error {
+    display: block;
+}
+
+/* Contenido Nosotros */
+.contenido-nosotros {
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .contenido-nosotros {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+}
+
+.texto-nosotros blockquote {
+    font-weight: var(--black);
+    font-size: 2.2rem;
+    margin: 3rem 0 0 0;
+    padding: 1rem 0 3rem 0;
+    color: var(--primario);
+    border-left: 5px solid var(--amarilloOscuro);
+    padding-left: 2rem;
+}
+
+/* ============================================
+   FOOTER
+============================================ */
+.footer {
+    padding: calc(var(--separacion) / 2) 0;
+    background-color: var(--grisOscuro);
+    margin-bottom: 0;
+    margin-top: 5rem;
+}
+
+.contenedor-footer {
+    padding-top: calc(var(--separacion) / 2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.footer .navegacion {
+    visibility: visible;
+    opacity: 1;
+    height: auto;
+    gap: 3rem;
+}
+
+.footer .navegacion a {
+    font-size: 1.8rem;
+}
+
+.footer .navegacion a:hover {
+    color: var(--amarillo);
+}
+
+.copyright {
+    color: var(--blanco);
+    text-align: center;
+    font-size: 1.4rem;
+    margin-top: 2rem;
+}
+
+/* ============================================
+   DARK MODE
+============================================ */
+body.dark-mode {
+    background-color: color-mix(in srgb, var(--grisOscuro) 90%, black);
+    color: var(--blanco);
+}
+
+body.dark-mode p {
+    color: var(--blanco);
+}
+
+body.dark-mode a,
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4 {
+    color: var(--grisClaro);
+}
+
+body.dark-mode .anuncio,
+body.dark-mode .resumen-propiedad {
+    background-color: #495057;
+    border: 1px solid #495057;
+}
+
+body.dark-mode .anuncio .precio {
+    color: var(--verde);
+}
+
+body.dark-mode .anuncio .icono {
+    filter: invert(100%);
+}
+
+body.dark-mode .texto-nosotros blockquote {
+    color: var(--blanco);
+}
+
+body.dark-mode .formulario {
+    background-color: #495057;
+}
+
+body.dark-mode .formulario label,
+body.dark-mode .formulario legend,
+body.dark-mode .formulario p {
+    color: var(--grisClaro);
+}
+
+body.dark-mode .formulario input:not([type="submit"]),
+body.dark-mode .formulario textarea,
+body.dark-mode .formulario select {
+    background-color: #6c757d;
+    border: 1px solid #495057;
+    color: var(--blanco);
+}
+
+body.dark-mode .testimoniales {
+    background-color: #218838;
+}
+
+body.dark-mode .footer {
+    background-color: #212529;
+}
+
+body.dark-mode .icono {
+    background-color: #495057;
+}
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+@media (max-width: 992px) {
+    .contenedor-anuncios {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .header h1 {
+        font-size: 3.5rem;
+    }
+
+    .imagen-contacto h2 {
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .iconos-nosotros {
+        grid-template-columns: 1fr;
+    }
+
+    .contenedor-anuncios {
+        grid-template-columns: 1fr;
+    }
+
+    .seccion-inferior {
+        grid-template-columns: 1fr;
+    }
+
+    .entrada-blog {
+        grid-template-columns: 1fr;
+    }
+
+    .barra {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .derecha {
+        flex-direction: column;
+    }
+
+    .navegacion {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+
+    .header h1 {
+        font-size: 3rem;
+    }
+
+    .imagen-contacto h2 {
+        font-size: 3rem;
+    }
+
+    .imagen-contacto p {
+        font-size: 1.6rem;
+    }
+
+    .formulario {
+        padding: 2rem;
+        margin: 2rem;
+    }
+
+    .formulario legend {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 55%;
+    }
+
+    .header h1 {
+        font-size: 2.5rem;
+    }
+
+    .navegacion {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2.6rem;
+    }
+
+    h3 {
+        font-size: 2.2rem;
+    }
+
+    .imagen-contacto h2 {
+        font-size: 2.5rem;
+    }
+
+    .imagen-contacto p {
+        font-size: 1.4rem;
+    }
+
+    .iconos-caracteristicas {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .iconos-caracteristicas li {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+/* ============================================
+   ANIMACIONES Y EFECTOS
+============================================ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.anuncio {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.icono {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.entrada-blog {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* ============================================
+   CLASES ESPECIALES PARA THYMELEAF
+============================================ */
+[th\\:each] {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.texto-destacado {
+    background-color: var(--amarillo);
+    color: var(--negro);
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: var(--bold);
+    display: inline-block;
+    margin: 1rem 0;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--primario);
+    color: var(--blanco);
+    border-radius: 2rem;
+    font-size: 1.2rem;
+    font-weight: var(--bold);
+    margin-left: 1rem;
+}
+
+.etiqueta {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    background-color: var(--verde);
+    color: var(--blanco);
+    border-radius: 0.3rem;
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ============================================
+   ESTILOS PARA TABLAS (VENDEDORES)
+============================================ */
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    background-color: var(--blanco);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tabla th {
+    background-color: var(--primario);
+    color: var(--blanco);
+    padding: 1.5rem;
+    text-align: left;
+    font-weight: var(--bold);
+}
+
+.tabla td {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid var(--grisClaro);
+}
+
+.tabla tr:hover {
+    background-color: var(--grisClaro);
+}
+
+.tabla .acciones {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.tabla .btn-accion {
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+    border: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+    transition: all 0.3s;
+}
+
+.tabla .btn-editar {
+    background-color: var(--azul);
+    color: var(--blanco);
+}
+
+.tabla .btn-eliminar {
+    background-color: var(--primario);
+    color: var(--blanco);
+}
+
+.tabla .btn-accion:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   ESTILOS PARA PÁGINAS INTERNAS
+============================================ */
+.resumen-propiedad {
+    background-color: var(--grisClaro);
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+}
+
+.resumen-propiedad .precio {
+    font-size: 3.5rem;
+    margin: 1rem 0;
+}
+
+.galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.galeria img {
+    height: 150px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    transition: transform 0.3s;
+}
+
+.galeria img:hover {
+    transform: scale(1.05);
+}
+
+/* ============================================
+   LOADER Y ESTADOS
+============================================ */
+.loader {
+    border: 4px solid var(--grisClaro);
+    border-top: 4px solid var(--primario);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 2rem auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.mensaje {
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+    font-weight: var(--bold);
+}
+
+.mensaje.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.mensaje.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.mensaje.info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+/* ============================================
+   ÚLTIMOS AJUSTES
+============================================ */
+::selection {
+    background-color: var(--primario);
+    color: var(--blanco);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--grisClaro);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primario);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #d43f49;
+}
+
+/* Impresión */
+@media print {
+    .navegacion,
+    .footer,
+    .boton,
+    .dark-mode-boton {
+        display: none !important;
+    }
+
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+    }
+
+    .contenedor {
+        max-width: 100%;
+        padding: 0;
+    }
+}

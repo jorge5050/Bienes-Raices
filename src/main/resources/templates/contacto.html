@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto - Bienes Raíces</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700;900&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<header class="header">
+  <div class="contenedor contenido-header">
+    <div class="barra">
+      <a th:href="@{/}">
+        <img th:src="@{/img/logo.svg}" alt="Logotipo de Bienes Raices" class="logo">
+      </a>
+
+      <nav class="navegacion">
+        <a th:href="@{/nosotros}">Nosotros</a>
+        <a th:href="@{/anuncios}">Anuncios</a>
+        <a th:href="@{/blog}">Blog</a>
+        <a th:href="@{/contacto}">Contacto</a>
+
+        <a th:href="@{/admin/dashboard}" sec:authorize="isAuthenticated()">Admin</a>
+
+        <form th:action="@{/logout}" method="POST" sec:authorize="isAuthenticated()" style="display: inline;">
+          <button type="submit" class="boton-cerrar-sesion" style="background:none; border:none; color:white; cursor:pointer; font-size: inherit; font-family: inherit;">
+            Cerrar Sesión
+          </button>
+        </form>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="contenedor seccion">
+  <h1 class="centrar-texto">Contacto</h1>
+
+  <div class="contenido-centrado">
+    <p class="centrar-texto">¿Interesado en una propiedad? Contáctanos y te ayudaremos a encontrar el hogar de tus sueños.</p>
+  </div>
+
+  <form class="formulario" th:action="@{/contacto/enviar}" method="POST">
+
+    <div th:if="${exito}" class="alerta exito" th:text="${exito}"
+         style="background-color: #d4edda; color: #155724; padding: 1rem; margin-bottom: 2rem; border-radius: 5px; text-align: center;"></div>
+
+    <fieldset>
+      <legend>Información Personal</legend>
+
+      <label for="nombre">Nombre Completo</label>
+      <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+
+      <label for="email">Correo Electrónico</label>
+      <input type="email" id="correo" name="correo" placeholder="tucorreo@ejemplo.com" required>
+
+      <label for="telefono">Teléfono</label>
+      <input type="tel" id="telefono" name="telefono">
+
+      <label for="mensaje">Mensaje</label>
+      <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+    </fieldset>
+
+    <fieldset>
+      <legend>Información sobre la Propiedad</legend>
+
+      <label for="presupuesto">Presupuesto (en USD)</label>
+      <select id="presupuesto" name="presupuesto">
+        <option value="100-200">$100,000 - $200,000</option>
+      </select>
+
+      <label>Tipo de Propiedad</label>
+      <div class="opciones">
+        <input type="radio" name="tipo_propiedad" value="casa"> Casa
+        <input type="radio" name="tipo_propiedad" value="departamento"> Departamento
+      </div>
+
+      <label for="contacto">Prefiero que me contacten por:</label>
+      <select name="contacto_preferido">
+        <option value="email">Correo Electrónico</option>
+        <option value="telefono">Llamada Telefónica</option>
+      </select>
+
+      <div class="opcion">
+        <input type="checkbox" name="recibir_informacion" value="si">
+        <label>Deseo recibir información</label>
+      </div>
+    </fieldset>
+
+    <input type="submit" value="Enviar Mensaje" class="boton boton-verde">
+  </form>
+</main>
+
+<section class="seccion contenedor">
+  <h2 class="centrar-texto">Otras Formas de Contacto</h2>
+
+  <div class="iconos-nosotros">
+    <div class="icono">
+      <img th:src="@{/img/icono1.svg}" alt="Icono ubicación">
+      <h3>Ubicación</h3>
+      <p>Av. Principal 123, Ciudad</p>
+    </div>
+    <div class="icono">
+      <img th:src="@{/img/icono2.svg}" alt="Icono teléfono">
+      <h3>Teléfono</h3>
+      <p>+1 (555) 123-4567</p>
+    </div>
+    <div class="icono">
+      <img th:src="@{/img/icono3.svg}" alt="Icono horario">
+      <h3>Horario</h3>
+      <p>Lun-Vie: 9am - 6pm</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer seccion">
+  <div class="contenedor contenedor-footer">
+
+    <nav class="navegacion">
+      <a th:href="@{/nosotros}">Nosotros</a>
+      <a th:href="@{/anuncios}">Anuncios</a>
+      <a th:href="@{/blog}">Blog</a>
+      <a th:href="@{/contacto}">Contacto</a>
+
+      <a th:href="@{/admin/dashboard}" sec:authorize="isAuthenticated()">Admin</a>
+
+      <form th:action="@{/logout}" method="POST" sec:authorize="isAuthenticated()" style="display: inline;">
+        <button type="submit" class="boton-cerrar-sesion" style="background:none; border:none; color:white; cursor:pointer; font-size: inherit; font-family: inherit;">
+          Cerrar Sesión
+        </button>
+      </form>
+    </nav>
+    <p class="copyright">Todos los derechos Reservados 2024 &copy;</p>
+  </div>
+</footer>
+
+<script th:src="@{/js/app.js}"></script>
+<script>
+  // Validación adicional del formulario
+  document.getElementById('formContacto').addEventListener('submit', function(e) {
+      const telefono = document.getElementById('telefono').value;
+      if (telefono && !/^[\d\s\-\+\(\)]{10,}$/.test(telefono)) {
+          e.preventDefault();
+          alert('Por favor ingresa un número de teléfono válido (mínimo 10 dígitos)');
+      }
+  });
+</script>
+</body>
+</html>

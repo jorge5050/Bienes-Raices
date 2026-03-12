@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienes Raíces - Iniciar Sesión</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<header class="header">
+    <div class="contenedor contenido-header">
+        <div class="barra">
+            <a th:href="@{/}">
+                <img th:src="@{/img/logo.svg}" alt="Logotipo de Bienes Raices">
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="contenedor seccion contenido-centrado">
+    <h1>Iniciar Sesión</h1>
+
+    <div th:if="${param.error}" class="alerta error">
+        El correo o la contraseña son incorrectos.
+    </div>
+    <div th:if="${param.logout}" class="alerta exito">
+        Has cerrado sesión correctamente.
+    </div>
+
+    <form method="POST" th:action="@{/login}" class="formulario">
+        <fieldset>
+            <legend>Email y Password</legend>
+
+            <label for="username">E-mail</label>
+            <input type="email" name="username" placeholder="Tu Email" id="username" required>
+
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="Tu Password" id="password" required>
+        </fieldset>
+
+        <input type="submit" value="Iniciar Sesión" class="boton-verde">
+    </form>
+</main>
+
+<footer class="footer seccion">
+    <div class="contenedor contenedor-footer">
+        <p class="copyright">Todos los derechos Reservados &copy;</p>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bienes Raíces - Nuevo Administrador</title>
+  <link rel="stylesheet" th:href="@{/css/main.css}">
+
+  <style>
+    .boton-amarillo {
+  background-color: #ffffbf;
+  border-radius: 25px;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+  </style>
+</head>
+<body>
+
+<main class="contenedor seccion contenido-centrado">
+  <h1>Registrar Nuevo Administrador</h1>
+
+  <a th:href="@{/admin/dashboard}" class="boton-amarillo">Volver al Dashboard</a>
+
+  <div th:if="${error}" class="alerta error"
+       style="background-color: #f8d7da; color: #721c24; padding: 1rem; margin: 2rem 0; border-radius: 5px; text-align: center; border: 1px solid #f5c6cb; font-weight: bold;">
+    <span th:text="${error}"></span>
+  </div>
+
+  <form method="POST" th:action="@{/admin/usuarios/crear}" class="formulario">
+    <fieldset>
+      <legend>Datos de Acceso</legend>
+
+      <label for="email">E-mail</label>
+      <input type="email" name="email" id="email" placeholder="Correo del nuevo admin" required>
+
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" placeholder="Contraseña temporal" required>
+    </fieldset>
+
+    <input type="submit" value="Crear Usuario" class="boton-verde">
+  </form>
+</main>
+
+</body>
+</html>

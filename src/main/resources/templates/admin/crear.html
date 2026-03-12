@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Propiedad - Bienes Raíces</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+
+<main class="contenedor seccion">
+    <h1>Crear Propiedad</h1>
+
+    <a th:href="@{/admin/dashboard}" class="boton-verde">Volver</a>
+
+    <div th:if="${error}" class="alerta error"
+         style="background-color: #f8d7da; color: #721c24; padding: 1rem; margin-bottom: 2rem; border-radius: 5px; text-align: center; border: 1px solid #f5c6cb;">
+        <span th:text="${error}"></span>
+    </div>
+
+    <form method="POST" th:action="@{/admin/usuarios/crear}" class="formulario">
+    </form>
+
+    <form class="formulario" th:action="@{/admin/propiedades/guardar}" th:object="${propiedad}" method="POST" enctype="multipart/form-data">
+
+        <fieldset>
+            <legend>Información General</legend>
+
+            <label for="titulo">Título:</label>
+            <input type="text" th:field="*{titulo}" id="titulo" placeholder="Título Propiedad" required>
+
+            <label for="precio">Precio:</label>
+            <input type="number" th:field="*{precio}" id="precio" placeholder="Precio Propiedad" required>
+
+            <label for="archivoImagen">Imagen:</label>
+            <input type="file" id="archivoImagen" name="archivoImagen" accept="image/jpeg, image/png" required>
+
+            <label for="descripcion">Descripción:</label>
+            <textarea th:field="*{descripcion}" id="descripcion" required></textarea>
+        </fieldset>
+
+        <fieldset>
+            <legend>Información Propiedad</legend>
+
+            <label for="habitaciones">Habitaciones:</label>
+            <input type="number" th:field="*{habitaciones}" id="habitaciones" placeholder="Ej: 3" min="1" max="9" required>
+
+            <label for="wc">Baños:</label>
+            <input type="number" th:field="*{wc}" id="wc" placeholder="Ej: 3" min="1" max="9" required>
+
+            <label for="estacionamiento">Estacionamiento:</label>
+            <input type="number" th:field="*{estacionamiento}" id="estacionamiento" placeholder="Ej: 3" min="1" max="9" required>
+        </fieldset>
+
+        <input type="submit" value="Crear Propiedad" class="boton-verde">
+    </form>
+</main>
+
+</body>
+</html>

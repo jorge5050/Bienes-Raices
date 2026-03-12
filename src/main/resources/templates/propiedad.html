@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${propiedad.titulo}">Detalle de Propiedad</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+
+<main class="contenedor seccion contenido-centrado">
+    <h1 th:text="${propiedad.titulo}">Título de la Casa</h1>
+
+    <img loading="lazy" th:src="@{'/img/uploads/' + ${propiedad.imagen}}" alt="imagen de la propiedad">
+
+    <div class="resumen-propiedad">
+        <p class="precio" th:text="${'$' + #numbers.formatDecimal(propiedad.precio, 0, 'COMMA', 0, 'POINT')}"></p>
+
+        <ul class="iconos-caracteristicas">
+            <li>
+                <img class="icono" loading="lazy" src="/img/icono_wc.svg" alt="icono wc">
+                <p th:text="${propiedad.wc}">0</p>
+            </li>
+            <li>
+                <img class="icono" loading="lazy" src="/img/icono_estacionamiento.svg" alt="icono estacionamiento">
+                <p th:text="${propiedad.estacionamiento}">0</p>
+            </li>
+            <li>
+                <img class="icono" loading="lazy" src="/img/icono_dormitorio.svg" alt="icono habitaciones">
+                <p th:text="${propiedad.habitaciones}">0</p>
+            </li>
+        </ul>
+
+        <div class="descripcion-larga">
+            <p th:text="${propiedad.descripcion}"></p>
+        </div>
+
+        <div class="alinear-derecha">
+            <a th:href="@{/anuncios}" class="boton-amarillo">Volver</a>
+        </div>
+    </div>
+</main>
+
+<footer class="footer seccion">
+    <div class="contenedor contenedor-footer">
+        <nav class="navegacion">
+            <a th:href="@{/nosotros}">Nosotros</a>
+            <a th:href="@{/anuncios}">Anuncios</a>
+            <a th:href="@{/blog}">Blog</a>
+            <a th:href="@{/contacto}">Contacto</a>
+        </nav>
+    </div>
+    <p class="copyright">Todos los derechos Reservados &copy;</p>
+</footer>
+
+</body>
+</html>

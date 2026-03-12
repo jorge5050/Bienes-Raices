@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Bienes Raíces</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <style>
+        /* Estilos para mantener la consistencia */
+        .propiedades {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+        .propiedades thead {
+            background-color: #333;
+            color: white;
+        }
+        .propiedades th, .propiedades td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e1e1e1;
+        }
+        .imagen-tabla {
+            width: 100px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .acciones {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .opciones-admin {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        /* Alertas de registro exitoso */
+        .alerta {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+        }
+.boton-verde {
+  background-color: green;
+  border-radius: 25px;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.boton-amarillo {
+  background-color: #ffffbf;
+  border-radius: 25px;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.boton-rojo {
+  background-color: red;
+  border-radius: 25px;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.boton-editar{
+background-color: #0D6EFD;
+  border: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  color: black;
+  padding: 10px 5px;
+  text-align: center;
+  text-decoration: none;
+ display: inline-block
+  font-size: 10px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.boton-eliminar{
+  background-color: #DC3545;
+  border: none;
+ width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  color: black;
+  padding: 10px 5px;
+  text-align: center;
+  text-decoration: none;
+ display: inline-block
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+  .exito { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    </style>
+</head>
+<body>
+
+<main class="contenedor seccion">
+    <h1>Administrador de Bienes Raíces</h1>
+
+    <div th:if="${exito}" class="alerta exito">
+        <span th:text="${exito}"></span>
+    </div>
+
+    <div class="opciones-admin">
+        <a th:href="@{/admin/propiedades/crear}" class="boton-verde">Nueva Propiedad</a>
+
+        <a th:href="@{/admin/usuarios/crear}" class="boton-amarillo">Registrar Admin</a>
+
+        <a th:href="@{/admin/mensajes/listado}" class="boton-rojo">Ver Mensajes de Contacto</a>
+
+        <form th:action="@{/logout}" method="POST" style="display: inline;">
+            <button type="submit" class="boton-rojo-block" style="border:none; cursor:pointer; padding: 1rem 3rem;">
+                Cerrar Sesión
+            </button>
+        </form>
+    </div>
+
+    <h2>Propiedades Listadas</h2>
+    <table class="propiedades">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Imagen</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="propiedad : ${propiedades}">
+            <td th:text="${propiedad.id}"></td>
+            <td th:text="${propiedad.titulo}"></td>
+            <td>
+                <img th:src="@{'/img/uploads/' + ${propiedad.imagen}}" class="imagen-tabla" alt="Propiedad">
+            </td>
+            <td>$<span th:text="${propiedad.precio}"></span></td>
+            <td>
+                <div class="acciones">
+                    <a th:href="@{/admin/propiedades/editar/{id}(id=${propiedad.id})}" class="boton-editar">Editar</a>
+
+                    <form th:action="@{/admin/propiedades/eliminar}" method="POST">
+                        <input type="hidden" name="id" th:value="${propiedad.id}">
+                        <input type="submit" class="boton-eliminar" value="Eliminar"
+                               onclick="return confirm('¿Estás seguro?')">
+                    </form>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+
+</body>
+</html>

@@ -4,8 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${propiedad.titulo}">Detalle de Propiedad</title>
-    <link rel="stylesheet" th:href="@{/css/app.css}">
+<!--    <link rel="stylesheet" th:href="@{/css/app.css}">-->
+
+    <style>
+        body {
+     background-color: #FE EF 6D; /* Un negro suave, no puro */
+     color: #E0E0E0; /* Texto gris muy claro para legibilidad */
+     font-family: 'Lato', sans-serif;
+     }
+
+ .contenedor {
+     background-color: #28A745; /* Las "cajas" de contenido un poco más claras */
+     padding: 2rem;
+     border-radius: 1rem;
+ }
+
+ h1, h2 {
+     color: black; /* Títulos en el amarillo de tu marca */
+ }
+         /* Estilos para el Footer */
+ .footer {
+     background-color: #333333; /* Color oscuro diferente al body */
+     padding: 3rem 0;
+     margin-top: 5rem;
+     color: #ffffff;
+ }
+
+ /* Centrado de la Navegación */
+ .navegacion {
+     display: flex;
+     justify-content: center; /* Centra los enlaces horizontalmente */
+     gap: 2rem; /* Separación entre cada enlace */
+     margin-bottom: 2rem;
+ }
+
+ .navegacion a {
+     color: #ffffff;
+     text-decoration: none;
+     font-size: 1.8rem;
+ }
+
+ .navegacion a:hover {
+     color: #feef6d; /* Un tono amarillo al pasar el mouse */
+ }
+
+ /* Centrado y separación de Derechos Reservados */
+ .copyright {
+     text-align: center;
+     margin-top: 4rem; /* Separación respecto a la navegación */
+     font-size: 1.4rem;
+     color: #aaaaaa;
+     border-top: 1px solid #444; /* Una línea sutil para separar */
+     padding-top: 2rem;
+ }
+
+
+    </style>
 </head>
+
 <body>
 
 <main class="contenedor seccion contenido-centrado">
@@ -21,10 +77,14 @@
                 <img class="icono" loading="lazy" src="/img/icono_wc.svg" alt="icono wc">
                 <p th:text="${propiedad.wc}">0</p>
             </li>
+
             <li>
                 <img class="icono" loading="lazy" src="/img/icono_estacionamiento.svg" alt="icono estacionamiento">
-                <p th:text="${propiedad.estacionamiento}">0</p>
+                <p>
+                    <span th:text="${propiedad.estacionamiento > 0 ? 'Sí (' + propiedad.estacionamiento + ')' : 'No'}"></span>
+                </p>
             </li>
+
             <li>
                 <img class="icono" loading="lazy" src="/img/icono_dormitorio.svg" alt="icono habitaciones">
                 <p th:text="${propiedad.habitaciones}">0</p>

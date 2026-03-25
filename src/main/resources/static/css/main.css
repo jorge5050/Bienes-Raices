@@ -294,7 +294,7 @@ picture {
 
 .derecha {
     display: flex;
-    align-items: center;
+   text-align: center;
     gap: 2rem;
 }
 
@@ -354,8 +354,7 @@ picture {
 
 @media (max-width: 768px) {
     .navegacion {
-        flex-wrap: wrap;
-        justify-content: center;
+       text-align: center;
     }
 }
 

@@ -42,7 +42,7 @@
 </header>
 
 <main class="contenedor seccion">
-    <h2>Casas y Depas en Venta</h2>
+    <h2>Casas y Apartamentos en Venta</h2>
 
     <div class="contenedor-anuncios">
         <div class="anuncio" th:each="propiedad : ${propiedades}">
@@ -60,7 +60,11 @@
                     </li>
                     <li>
                         <img class="icono" loading="lazy" th:src="@{/img/icono_estacionamiento.svg}" alt="icono estacionamiento">
-                        <p th:text="${propiedad.estacionamiento}">2</p>
+                        <!--<p th:text="${propiedad.estacionamiento}">2</p>-->
+                        <p>
+                            <span th:text="${propiedad.estacionamiento > 0 ? '(' + propiedad.estacionamiento + ')' : 'No'}"></span>
+                        </p>
+
                     </li>
                     <li>
                         <img class="icono" loading="lazy" th:src="@{/img/icono_dormitorio.svg}" alt="icono habitaciones">

@@ -43,15 +43,4 @@ public class UsuarioController {
         redirectAttributes.addFlashAttribute("exito", "Usuario creado correctamente.");
         return "redirect:/admin/dashboard";
     }
-
-//    @PostMapping("/usuarios/crear")
-//    public String guardarUsuario(@ModelAttribute Usuario usuario) {
-//        // Encriptamos la contraseña antes de guardar
-//        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
-//        // Asignamos el rol de administrador por defecto
-//        usuario.setRol("ROLE_ADMIN");
-//
-//        usuarioRepository.save(usuario);
-//        return "redirect:/admin/dashboard?registroExitoso";
-//    }
 }
